@@ -1,0 +1,81 @@
+{% load static %}
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <img src="{% static 'adminlte/dist/img/AdminLTELogo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Auto apk System</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+   
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+
+
+          <li class="nav-item">
+            <a href="{% url 'CheckAPP:index' %}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                基本信息展示
+                <span class="right badge badge-danger">Hot</span>
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{% url 'DownloadAPP:testing' %}" class="nav-link">
+              <i class="nav-icon fas fa-tree"></i>
+              <p>
+                测试下载列表情况
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{% url 'UploadAPP:upload' %}" class="nav-link">
+              <i class="nav-icon fas fa-heart"></i>
+              <p>
+                上传应用
+                <span class="right badge badge-danger">Nice</span>
+              </p>
+            </a>
+          </li>
+
+           <li class="nav-item">
+            <a href="{% url 'CreateAPP:show' %}" class="nav-link">
+              <i class="nav-icon fas fa-tree"></i>
+              <p>
+                应用创建
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+            <li class="nav-item">
+            <a href="{% url 'CheckAPP:control' %}" class="nav-link">
+              <i class="nav-icon fas fa-tree"></i>
+              <p>
+                自动监控
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a href="{% url 'CheckAPP:control' %}" class="nav-link">
+              <i class="nav-icon fas fa-tree"></i>
+              <p>
+                关键字搜索
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>

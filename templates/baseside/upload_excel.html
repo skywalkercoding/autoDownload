@@ -1,0 +1,10 @@
+
+
+{% load static %}
+<div class="input-group mb-3">
+    <form method="post" enctype="multipart/form-data" id="excelAddForm">
+      {% csrf_token %}
+    <input type="file" class="textbox ml-3" id="excelfile"  name="excelfile" style="width:300px">
+    <button type="submit" id="exceluploadButton" class="btn btn-outline-primary rounded ml-2">Upload Excel</button>
+    </form>
+</div>

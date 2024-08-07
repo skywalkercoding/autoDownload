@@ -1,0 +1,54 @@
+<section class="content">
+  
+          <!-- /.card -->
+
+          <div class="card">
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th style="width:1%">No.</th>
+                  <th style="width:15%">PackageName</th>
+                  <th style="width:20%">FVersion</th>
+                  <th style="width:10%">GVersion</th>
+                  <th style="width:15%">Upgrade Status</th>
+
+                </tr>
+                </thead>
+                   {% for app in apps%}
+                <tbody>
+
+                <tr>
+                    <td>
+                        {{app.num}}
+                    </td>
+                  <td>
+                      <li class="list-inline-item">
+                      {{app.pkgName}}
+                      </li>
+                  </td>
+                  <td>    <li class="list-inline-item">
+                      {{app.fversion}}
+                     </li>
+                  </td>
+                  <td>{{app.gversion}}</td>
+                  <td> {{app.upstatus}}</td>
+
+                </tr>
+                
+                </tbody>
+                     {% endfor %}
+
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>

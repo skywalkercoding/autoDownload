@@ -1,0 +1,64 @@
+<section class="content">
+
+          <!-- /.card -->
+
+          <div class="card">
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th style="width:1%">No.</th>
+                  <th style="width:5%">PackageName</th>
+                  <th style="width:10%">appName</th>
+                   <th style="width:5%">Country/Area</th>
+                  <th style="width:5%">AG Status</th>
+                  <th style="width:10%">FVersion</th>
+                  <th style="width:10%">GoogleVersion</th>
+                  <th style="width:5%">Upgrade Status</th>
+                  <th style="width:5%">DownloadVersion</th>
+                  <th style="width:15%">Download Files</th>
+
+                </tr>
+                </thead>
+                   {% for app in apps%}
+                <tbody>
+
+                <tr>
+                    <td>
+                        {{app.num}}
+                    </td>
+                  <td>
+                      <li class="list-inline-item">
+                      {{app.pkg}}
+                      </li>
+                  </td>
+                  <td>    <li class="list-inline-item">
+                      {{app.appname}}
+                     </li>
+                  </td>
+                  <td>{{app.place}}</td>
+                  <td> {{app.agstatus}}</td>
+                  <td> {{app.fv}}</td>
+                  <td> {{app.gv}}</td>
+                  <td> {{app.status}}</td>
+                  <td> {{app.dv}}</td>
+                  <td> {{app.filename}}</td>
+
+                </tr>
+
+                </tbody>
+                     {% endfor %}
+
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>

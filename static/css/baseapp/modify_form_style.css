@@ -1,0 +1,30 @@
+<style>
+
+    .vertical-form .form-group {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .vertical-form label {
+        width: 100%;
+    }
+
+    .vertical-form .form-control {
+        width: 100%;
+    }
+    .vertical-form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .form-container {
+        text-align: left;
+    }
+    .package-name {
+        font-family: Arial, sans-serif; /* 选择你喜欢的字体 */
+        font-size: 24px; /* 设置字体大小 */
+        font-weight: bold; /* 设置字体粗细 */
+        color: #333; /* 设置字体颜色 */
+        /* 添加其他样式属性，如 margin、padding 等 */
+    }
+</style>

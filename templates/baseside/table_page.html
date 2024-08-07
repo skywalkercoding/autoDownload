@@ -1,0 +1,62 @@
+<section class="content">
+  
+          <!-- /.card -->
+
+          <div class="card">
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th style="width: 1%">
+                      <input type="checkbox" class="i-checks"  id="allChecks" onclick="ckAll()">
+                  </th>
+                  <th style="width:1%">No.</th>
+                  <th style="width:10%">PackageName</th>
+                  <th style="width:10%">AppName</th>
+                  <th style="width:10%">Country/Area</th>
+                  <th style="width:5%">AG Status</th>
+                  <th style="width:5%">Arch</th>
+                  <th style="width:25%">Download Link</th>
+                </tr>
+                </thead>
+                   {% for app in apps%}
+                <tbody>
+
+                <tr>
+                    <td>
+                        <input type="checkbox" class="i-checks" value="{{app.pkgName}}" name="input[]">
+                    </td>
+                    <td>
+                        {{app.num}}
+                    </td>
+                  <td>
+                      <li class="list-inline-item">
+                      {{app.pkgName}}
+                      </li>
+                  </td>
+                  <td>    <li class="list-inline-item">
+                      {{app.appName}}
+                     </li>
+                  </td>
+                  <td>{{app.place}}</td>
+                  <td> {{app.status}}</td>
+                   <td> {{app.arch}}</td>
+                  <td>{{app.link}}</td>
+                </tr>
+                
+                </tbody>
+                     {% endfor %}
+
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
