@@ -67,3 +67,7 @@ CLIENT_SECRET = '5e87b5eb0683627914fbd82a65a32f722ff9fec104484ae2f173bba4c809dbb
 HUAWEI_APP_REDIRECT_URL = 'http://localhost:8000/redirect'
 AUTH_TOKEN = 'authorization_code'
 REFRESH_TOKEN = 'refresh_token'
+
+client_id="102726023"
+client_secret='5e87b5eb0683627914fbd82a65a32f722ff9fec104484ae2f173bba4c809dbb6'
+token_url = 'https://oauth-login.cloud.huawei.com/oauth2/v3/token'

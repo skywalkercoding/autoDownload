@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path,re_path
 from apps.CheckAPP.views import BaseAppView,AppListView,NextCheckView,CheckStatusView,UploadExcelView,UploadControlExcelView,LoadingVersionView,\
      DownloadingView,DownloadExcelTem,ClearDataView,ModifyAppView,CurrentModifyView,AddControlView,DelControlDataView,\
-RunTaskView,StopTaskView,RedirectView,OAuthCallbackView,TestOAuthCallbackView
+RunTaskView,StopTaskView,RedirectView,OAuthCallbackView,TestOAuthCallbackView,HuaweiOAuthCallbackView,RefreshTokenView
 
 app_name = 'CheckAPP'
 urlpatterns = [
@@ -41,5 +41,7 @@ urlpatterns = [
     re_path(r'oauth/callback/', OAuthCallbackView.as_view(), name='oauth_callback'),
     re_path(r'redirect/', RedirectView.as_view(), name='oauth_redirect'),
     re_path(r'test/callback/', TestOAuthCallbackView.as_view(), name='test_oauth_callback'),
+    re_path(r'^oauth2/callback/', HuaweiOAuthCallbackView.as_view(), name='auth_callback'),
+    re_path(r'^oauth2/refresh_token/', RefreshTokenView.as_view(), name='refresh_token'),
 
 ]

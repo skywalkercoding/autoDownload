@@ -38,7 +38,7 @@ class ImageFormatException(Exception):
 
 
 class BaseView(View):
-    def __init__(self):
+    def __init__(self,code=None,error=None, state=None,callback_url=None):
         self.currentPage = 1
         self.totalPage = 0
         self.pageSize = 8
@@ -48,6 +48,88 @@ class BaseView(View):
         self.endPage = 1
         self.pageList = []
         self.paginator = None
+        self.code = code
+        self.error = error
+        self.state = state
+        self.callback_url = callback_url
+
+    def checkCodeStatus(self):
+        # 检查是否有错误
+        if self.error:
+            return JsonResponse({"error": f"Authorization failed: {self.error}"}, status=400)
+
+        # 检查是否有授权码
+        if not self.code:
+            return JsonResponse({"error": "No authorization code provided."}, status=400)
+
+        # 检查是否有状态
+        if not self.state:
+            return JsonResponse({"error": "No state parameter provided."}, status=400)
+
+        return None  #
+
+    def getToken_from_huawei(self):
+        token_data = {
+            'grant_type': 'authorization_code',
+            'code': self.code,
+            'client_id': comm.client_id,  # 在 comm.py 中定义
+            'client_secret': comm.client_secret,  # 在 comm.py 中定义
+            'redirect_uri': self.callback_url,  # 确保与华为开发者平台配置的一致
+        }
+
+        response = requests.post(comm.token_url, data=token_data)
+        token_response_data = response.json()
+        if 'access_token' in token_response_data:
+            # 获取成功，处理 token
+            access_token = token_response_data['access_token']
+            refresh_token = token_response_data.get('refresh_token')
+
+            # 根据业务逻辑保存或使用 token
+            # 这里我们仅返回 token 作为示例
+            return JsonResponse({
+                "message": "Authorization successful",
+                "access_token": access_token,
+                "refresh_token": refresh_token,
+                "expires_in": token_response_data['expires_in'],
+                "scope": token_response_data['scope'],
+                "token_type": token_response_data['token_type'],
+                "id_token": token_response_data.get('id_token')
+            })
+        else:
+            # 获取 token 失败，返回错误信息
+            return JsonResponse({
+                "error": "Failed to retrieve access token.",
+                "details": token_response_data
+            }, status=400)
+
+    def refreshToken(self, refresh_token):
+        refresh_data = {
+            'grant_type': 'refresh_token',
+            'refresh_token': refresh_token,
+            'client_id': comm.client_id,
+            'client_secret': comm.client_secret,
+        }
+
+        # 向华为服务器请求新的访问令牌
+        response = requests.post(comm.token_url, data=refresh_data)
+        refresh_response_data = response.json()
+
+        if 'access_token' in refresh_response_data:
+            # 刷新成功，返回新的 access_token
+            return JsonResponse({
+                "message": "Token refreshed successfully",
+                "access_token": refresh_response_data['access_token'],
+                "refresh_token": refresh_response_data.get('refresh_token'),
+                "expires_in": refresh_response_data['expires_in'],
+                "scope": refresh_response_data['scope'],
+                "token_type": refresh_response_data['token_type']
+            })
+        else:
+            # 刷新失败，返回错误信息
+            return JsonResponse({
+                "error": "Failed to refresh access token.",
+                "details": refresh_response_data
+            }, status=400)
 
     def getCurrentPage(self, request):  # 前台要显示第几页的参数获取
         if request.method == 'GET':

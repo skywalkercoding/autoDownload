@@ -513,3 +513,26 @@ class TestOAuthCallbackView(BaseView):
         test_code = 'test_authorization_code'
         callback_url = f"{request.build_absolute_uri(reverse('oauth_callback'))}?code={test_code}"
         return redirect(callback_url)
+
+
+class HuaweiOAuthCallbackView(BaseView):
+    def get(self, request):
+        # 获取请求中的参数
+        self.code = request.GET.get('code')
+        self.state = request.GET.get('state')
+        self.error = request.GET.get('error')
+        self.callback_url=request.build_absolute_uri('/oauth2/callback/')
+        status_response = self.checkCodeStatus()
+        if status_response:  # 如果 checkStatus 返回了一个响应，则直接返回
+            return status_response
+        return self.getToken_from_huawei()
+
+class RefreshTokenView(BaseView):
+    def post(self, request):
+        # 从请求中获取 refresh_token
+        refresh_token = request.POST.get('token')
+        if not refresh_token:
+            return JsonResponse({"error": "No refresh token provided."}, status=400)
+
+        # 构造刷新访问令牌的请求数据
+        return self.refreshToken(refresh_token)
